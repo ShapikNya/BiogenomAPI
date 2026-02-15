@@ -1,5 +1,6 @@
-﻿using Biogenom.Application.Commands.Image.Upload;
-using Biogenom.Application.Commands.Image.Delete;
+﻿using Biogenom.Application.Commands.Image.Delete;
+using Biogenom.Application.Commands.Image.Upload;
+using Biogenom.Application.Queries.AnalyzeImage;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -48,5 +49,25 @@ public class ImagesController : ControllerBase
     {
         await _mediator.Send(new DeleteImageCommand { ImageId = id });
         return NoContent();
+    }
+
+    /// <summary>
+    /// Analyzes an image via GigaChat API.
+    /// </summary>
+    /// <remarks>
+    /// Sample request:
+    /// POST /api/image/analyze
+    /// {
+    ///     "FilePath": "C:\\images\\apple.jpg",
+    ///     "Prompt": "Опциональный промт"
+    /// }
+    /// </remarks>
+    /// <param name="query">Query containing the local file path and optional prompt</param>
+    /// <returns>List of detected objects on the image</returns>
+    [HttpPost("analyze")]
+    public async Task<IActionResult> Analyze([FromBody] AnalyzeImageQuery query)
+    {
+        var result = await _mediator.Send(query);
+        return Ok(result);
     }
 }

@@ -7,9 +7,9 @@ using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddHttpClient();
 builder.Services.AddApplication();
 builder.Services.AddPersistence(builder.Configuration);
-
 builder.Services.AddControllers();
 builder.Services.AddCors(options =>
 {
@@ -20,6 +20,7 @@ builder.Services.AddCors(options =>
         policy.AllowAnyOrigin();
     });
 });
+
 
 builder.Services.AddSwaggerGen(config =>
 {

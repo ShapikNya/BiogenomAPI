@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Biogenom.Application.Common.Mappings;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -13,12 +14,12 @@ namespace Biogenom.Application
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
-            /*  services.AddMediatR(cfg =>
-              {
-                  cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
-              });
-              services.AddValidatorsFromAssemblies(new[] { Assembly.GetExecutingAssembly() });
-              services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));*/
+            services.AddAutoMapper(config =>
+            {
+                config.AddProfile(new AssemblyMappingProfile(Assembly.GetExecutingAssembly()));
+                config.AddProfile(new AssemblyMappingProfile(typeof(IBiogenomDbContext).Assembly));
+            });
+
             services.AddMediatR(cfg =>
             {
                 cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
