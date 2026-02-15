@@ -6,4 +6,19 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+	<ItemGroup>
+		<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.1" />
+		<PackageReference Include="MediatR" Version="13.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.3.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Configuration" Version="10.0.1" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.4" />
+	</ItemGroup>
+
+	<ItemGroup>
+    <ProjectReference Include="..\Biogenom.Application\Biogenom.Application.csproj" />
+    <ProjectReference Include="..\Biogenom.Domain\Biogenom.Domain.csproj" />
+    <ProjectReference Include="..\Biogenom.Persistence\Biogenom.Persistence.csproj" />
+  </ItemGroup>
+
 </Project>
