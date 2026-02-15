@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Biogenom.Application;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,8 +7,11 @@ using System.Threading.Tasks;
 
 namespace Biogenom.Persistence
 {
-    public static void Initialize(BiogenomDbContext context)
+    public class DbInitializer
     {
-        context.Database.EnsureCreated();
+        public static void Initialize(BiogenomkDbContext context)
+        {
+            context.Database.EnsureCreated();
+        }
     }
 }
