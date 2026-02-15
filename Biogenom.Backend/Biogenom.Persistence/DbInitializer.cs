@@ -9,7 +9,7 @@ namespace Biogenom.Persistence
 {
     public class DbInitializer
     {
-        public static void Initialize(BiogenomkDbContext context)
+        public static void Initialize(BiogenomDbContext context)
         {
             context.Database.EnsureCreated();
         }

@@ -14,13 +14,13 @@ using static System.Collections.Specialized.BitVector32;
 
 namespace Biogenom.Persistence
 {
-    public class BiogenomkDbContext : DbContext, IBiogenomDbContext
+    public class BiogenomDbContext : DbContext, IBiogenomDbContext
     {
         public DbSet<Image> Images { get; set; }
         public DbSet<DetectedObject> DetectedObjects { get; set; }
         public DbSet<ObjectMaterial> ObjectMaterials { get; set; }
 
-        public BiogenomkDbContext(DbContextOptions<BiogenomkDbContext> options)
+        public BiogenomDbContext(DbContextOptions<BiogenomDbContext> options)
             : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder builder)
