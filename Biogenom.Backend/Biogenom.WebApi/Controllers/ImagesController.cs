@@ -1,4 +1,5 @@
 ﻿using Biogenom.Application.Commands.Image.Delete;
+using Biogenom.Application.Commands.Image.ProcessImage;
 using Biogenom.Application.Commands.Image.Upload;
 using Biogenom.Application.Queries.AnalyzeImage;
 using MediatR;
@@ -68,6 +69,25 @@ public class ImagesController : ControllerBase
     public async Task<IActionResult> Analyze([FromBody] AnalyzeImageQuery query)
     {
         var result = await _mediator.Send(query);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Uploads an image by URL, analyzes it, and returns detected objects.
+    /// </summary>
+    /// <remarks>
+    /// Sample request:
+    /// POST /api/image/process
+    /// {
+    ///     "ImageUrl": "https://example.com/image.jpg"
+    /// }
+    /// </remarks>
+    /// <param name="command">Command containing the URL of the image</param>
+    /// <returns>The ID of the uploaded image and detected objects</returns>
+    [HttpPost("process")]
+    public async Task<IActionResult> Process([FromBody] ProcessImageCommand command)
+    {
+        var result = await _mediator.Send(command);
         return Ok(result);
     }
 }
