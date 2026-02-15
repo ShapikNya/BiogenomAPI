@@ -1,6 +1,7 @@
 using Biogenom.Application;
 using Biogenom.Application.Common.Mappings;
 using Biogenom.Persistence;
+using Biogenom.WebApi.Middleware;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
@@ -28,6 +29,8 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
 }
 
+
+app.UseCustomExceptionHandler();
 app.UseHttpsRedirection();
 app.UseRouting();
 app.UseCors("AllowAll");
