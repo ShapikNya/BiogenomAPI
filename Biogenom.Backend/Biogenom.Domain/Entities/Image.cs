@@ -15,9 +15,9 @@ namespace Biogenom.Domain.Entities
         public string FilePath { get; set; } 
         public long FileSize { get; set; }
         public DateTime CreatedAt { get; set; }
-        public ImageStatus Status { get; set; } = ImageStatus.Uploaded;
+        public ImageStatus Status { get; set; }
 
         // 1:M
-        public List<DetectedObject> DetectedObjects { get; set; } = new();
+        public List<DetectedObject> DetectedObjects { get; set; }
     }
 }

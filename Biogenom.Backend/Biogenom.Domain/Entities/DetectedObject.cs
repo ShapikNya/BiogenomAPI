@@ -14,8 +14,8 @@ namespace Biogenom.Domain.Entities
         public decimal Confidence { get; set; }
 
         // 1:M 
-        public Image Image { get; set; } = null!;
+        public Image Image { get; set; }
         public List<ObjectMaterial> Materials { get; set; } 
     }
-
+    
 }

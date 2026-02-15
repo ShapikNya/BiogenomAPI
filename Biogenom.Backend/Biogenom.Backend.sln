@@ -3,9 +3,53 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.36202.13 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{9733451E-B3D5-4A1F-890A-0D1969AFFB53}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{B63B1635-BA80-4AC7-9CC0-A8CDCE8921FD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{7B8B9996-02C9-46A1-A353-0D35957AC707}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Biogenom.Domain", "Biogenom.Domain\Biogenom.Domain.csproj", "{553B4A2A-B187-4A39-9FCF-5A5680D653A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Biogenom.Application", "Biogenom.Application\Biogenom.Application.csproj", "{70807FF7-4C4A-4C54-B469-36DC23415671}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Biogenom.Persistence", "Biogenom.Persistence\Biogenom.Persistence.csproj", "{63AE2198-7C63-49C8-A649-51FE4EBA506B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Biogenom.WebApi", "Biogenom.WebApi\Biogenom.WebApi.csproj", "{3FA97A98-B25D-4D7E-9DA4-DD8A034FD88C}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{553B4A2A-B187-4A39-9FCF-5A5680D653A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{553B4A2A-B187-4A39-9FCF-5A5680D653A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{553B4A2A-B187-4A39-9FCF-5A5680D653A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{553B4A2A-B187-4A39-9FCF-5A5680D653A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70807FF7-4C4A-4C54-B469-36DC23415671}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70807FF7-4C4A-4C54-B469-36DC23415671}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70807FF7-4C4A-4C54-B469-36DC23415671}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70807FF7-4C4A-4C54-B469-36DC23415671}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63AE2198-7C63-49C8-A649-51FE4EBA506B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63AE2198-7C63-49C8-A649-51FE4EBA506B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63AE2198-7C63-49C8-A649-51FE4EBA506B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63AE2198-7C63-49C8-A649-51FE4EBA506B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FA97A98-B25D-4D7E-9DA4-DD8A034FD88C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FA97A98-B25D-4D7E-9DA4-DD8A034FD88C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FA97A98-B25D-4D7E-9DA4-DD8A034FD88C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FA97A98-B25D-4D7E-9DA4-DD8A034FD88C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{553B4A2A-B187-4A39-9FCF-5A5680D653A5} = {36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}
+		{70807FF7-4C4A-4C54-B469-36DC23415671} = {36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}
+		{63AE2198-7C63-49C8-A649-51FE4EBA506B} = {9733451E-B3D5-4A1F-890A-0D1969AFFB53}
+		{3FA97A98-B25D-4D7E-9DA4-DD8A034FD88C} = {B63B1635-BA80-4AC7-9CC0-A8CDCE8921FD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C2EDCD80-0A84-4459-9B49-91FC18BA08F4}
