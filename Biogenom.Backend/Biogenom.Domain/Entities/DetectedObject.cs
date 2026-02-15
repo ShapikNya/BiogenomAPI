@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace Biogenom.Domain.Entities
 {
-    internal class DetectedObject
+    public class DetectedObject
     {
+        public Guid Id { get; set; }
+        public Guid ImageId { get; set; }
+        public string ObjectName { get; set; } 
+        public decimal Confidence { get; set; }
+
+        // 1:M 
+        public Image Image { get; set; } = null!;
+        public List<ObjectMaterial> Materials { get; set; } 
     }
+
 }
