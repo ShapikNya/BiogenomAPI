@@ -25,6 +25,7 @@ namespace Biogenom.Application.Commands.Image.Upload
         {
             using var httpClient = new HttpClient();
             byte[] bytes;
+            httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0"); // имитируем браузер
             try
             {
                 bytes = await httpClient.GetByteArrayAsync(request.FileUrl, cancellationToken);
@@ -50,6 +51,7 @@ namespace Biogenom.Application.Commands.Image.Upload
             var image = new Biogenom.Domain.Entities.Image
             {
                 Id = Guid.NewGuid(),
+                FileName = fileName,
                 FilePath = Path.Combine("UploadedImages", fileName),
                 Extension = extension,
                 FileSize = bytes.Length,

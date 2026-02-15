@@ -2,9 +2,11 @@
 using Biogenom.Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Biogenom.Application.Commands.Image.Delete
 {
@@ -24,14 +26,22 @@ namespace Biogenom.Application.Commands.Image.Delete
                 .FirstOrDefaultAsync(i => i.Id == request.ImageId, cancellationToken);
 
             if (image == null)
-                throw new KeyNotFoundException("Изображение не найдено.");
+                throw new KeyNotFoundException($"Изображение с Id={request.ImageId} не найдено.");
 
-            // Удаляем файл с диска
-            var fullPath = Path.Combine(AppContext.BaseDirectory, image.FilePath);
-            if (File.Exists(fullPath))
-                File.Delete(fullPath);
+            var uploadsFolder = Path.Combine(AppContext.BaseDirectory, "UploadedImages");
+            var fileName = Path.GetFileName(image.FilePath);
+            var fullPath = Path.Combine(uploadsFolder, fileName);
 
-            // Удаляем запись из БД (включая связанные DetectedObjects)
+            try
+            {
+                if (File.Exists(fullPath))
+                    File.Delete(fullPath);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Не удалось удалить файл с диска: {ex.Message}");
+            }
+
             _dbContext.Images.Remove(image);
             await _dbContext.SaveChangesAsync(cancellationToken);
 
