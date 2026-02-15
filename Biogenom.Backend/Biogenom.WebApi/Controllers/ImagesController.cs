@@ -14,6 +14,18 @@ public class ImagesController : ControllerBase
         _mediator = mediator;
     }
 
+    /// <summary>
+    /// Uploads an image from a given URL.
+    /// </summary>
+    /// <remarks>
+    /// Sample request:
+    /// POST /api/image/upload
+    /// {
+    ///     "FileUrl": "https://example.com/image.png"
+    /// }
+    /// </remarks>
+    /// <param name="command">Command containing the URL of the image to upload</param>
+    /// <returns>The ID of the uploaded image</returns>
     [HttpPost("upload")]
     public async Task<IActionResult> Upload([FromBody] UploadImageCommand command)
     {
@@ -21,6 +33,16 @@ public class ImagesController : ControllerBase
         return Ok(imageId);
     }
 
+
+    /// <summary>
+    /// Deletes an image by its ID.
+    /// </summary>
+    /// <remarks>
+    /// Sample request:
+    /// DELETE /api/image/{id}
+    /// </remarks>
+    /// <param name="id">The ID of the image to delete</param>
+    /// <returns>No content if the deletion is successful</returns>
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(Guid id)
     {
