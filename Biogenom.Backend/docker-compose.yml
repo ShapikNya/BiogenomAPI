@@ -1,0 +1,50 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:15
+    container_name: biogenom_db
+    restart: always
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "${DB_PORT_HOST}:${DB_PORT_CONTAINER}"
+    volumes:
+      - biogenom_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  webapi:
+    build:
+      context: .
+      dockerfile: Biogenom.WebApi/Dockerfile
+    container_name: biogenom_webapi
+    restart: always
+    ports:
+      - "${WEBAPI_PORT_HOST}:${WEBAPI_PORT_CONTAINER}"
+    environment:
+      ASPNETCORE_URLS: ${ASPNETCORE_URLS}
+      ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT}
+      DB_CONNECTION_DOCKER: ${DB_CONNECTION_DOCKER}
+    depends_on:
+      db:
+        condition: service_healthy
+
+  nginx:
+    image: nginx:latest
+    container_name: biogenom_nginx
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - webapi
+
+volumes:
+  biogenom_db_data:
