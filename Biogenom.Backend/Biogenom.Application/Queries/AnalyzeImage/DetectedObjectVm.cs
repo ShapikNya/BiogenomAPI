@@ -12,7 +12,6 @@ namespace Biogenom.Application.Queries.AnalyzeImage
     public class DetectedObjectVm : IMapWith<DetectedObject>
     {
         public string Name { get; set; }
-        public decimal Confidence { get; set; }
 
         public void Mapping(Profile profile)
         {

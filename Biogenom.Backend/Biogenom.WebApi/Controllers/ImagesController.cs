@@ -2,6 +2,7 @@
 using Biogenom.Application.Commands.Image.ProcessImage;
 using Biogenom.Application.Commands.Image.Upload;
 using Biogenom.Application.Queries.AnalyzeImage;
+using Biogenom.Application.Queries.AnalyzeMaterials;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -87,6 +88,33 @@ public class ImagesController : ControllerBase
     [HttpPost("process")]
     public async Task<IActionResult> Process([FromBody] ProcessImageCommand command)
     {
+        var result = await _mediator.Send(command);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Analyzes materials of user-confirmed objects on an uploaded image and returns the list of objects with their materials.
+    /// </summary>
+    /// <remarks>
+    /// Sample request:
+    /// POST /api/images/{id}/analyze-materials
+    /// [
+    ///     "ручка",
+    ///     "ежедневник"
+    /// ]
+    /// </remarks>
+    /// <param name="id">ID of the uploaded image</param>
+    /// <param name="objectNames">List of object names confirmed/corrected by the user</param>
+    /// <returns>The ID of the image and a list of objects with their corresponding materials</returns>
+    [HttpPost("{id}/analyze-materials")]
+    public async Task<IActionResult> AnalyzeMaterials(Guid id, [FromBody] List<string> objectNames)
+    {
+        var command = new AnalyzeMaterialsQuery
+        {
+            ImageId = id,
+            ObjectNames = objectNames
+        };
+
         var result = await _mediator.Send(command);
         return Ok(result);
     }

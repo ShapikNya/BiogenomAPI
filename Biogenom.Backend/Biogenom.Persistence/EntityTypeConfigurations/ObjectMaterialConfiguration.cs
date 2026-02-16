@@ -22,10 +22,6 @@ namespace Biogenom.Persistence.EntityTypeConfigurations
                    .HasMaxLength(100)
                    .IsRequired();
 
-            builder.Property(x => x.Percentage)
-                   .HasColumnType("decimal(5,2)")
-                   .IsRequired();
-
             // Навигации
             builder.HasOne(x => x.DetectedObject)
                    .WithMany(d => d.Materials)
